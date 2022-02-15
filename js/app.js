@@ -31,8 +31,9 @@ Total: 875 cookies
 Display the lists on sales.html. We will be adding features to this application and working with its layout in the upcoming labs.
 
 */
+let cookieList = document.getElementById("cookieList");
 
-let storeHours = ['6am', '7am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
+let storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 function randPerHour(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
@@ -43,88 +44,62 @@ function cookiesPerHour(custPerHour, aveCookiePer) {
   return cookiesPerHour;
 }
 
-function
+// object stores the min/max hourly customers, and the average cookies per customer as properties.
 
-  // object stores the min/max hourly customers, and the average cookies per customer as properties.
+/*
+Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
 
-  /*
-  Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
-  
-  i.e create let cookiespurchased function that gives the product of custperhour * aveCookiePer DONE
-  
-  create a function that makes a create a function that calculates the cookies per hour off of the properties inside each object. And itterates through, for each time slot, than totals the number of cookies. This can use a counter for the hours, and after the counter hits a certain number it should total them. Then add that to the array
-  
-  */
+i.e create let cookies purchased function that gives the product of custperhour * aveCookiePer DONE
 
-  let seattle = {
-    minCustHourly: 23,
-    maxCustHourly: 65,
-    aveCookiePer: 6.3,
-    custPerHour: [],
-    cookiesSoldPerHour: [],
-    totalCookies: 0,
-    getCustPerHour: function () {
-      for (let i = 0; i < storeHours.length; i++) {
-        this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-      }
-    },
-    getCookiesSoldPerHour: function () {
-      for (let j = 0; j < storeHours.length; j++) {
-        this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-        console.log(this.cookiesSoldPerHour);
-      }
+create a function that makes a create a function that calculates the cookies per hour off of the properties inside each object. And iterates through, for each time slot, than totals the number of cookies. This can use a counter for the hours, and after the counter hits a certain number it should total them. Then add that to the array
+
+*/
+
+let seattle = {
+  location: 'Seattle',
+  minCustHourly: 23,
+  maxCustHourly: 65,
+  aveCookiePer: 6.3,
+  custPerHour: [],
+  cookiesSoldPerHour: [],
+  totalCookies: 0,
+  getCustPerHour: function () {
+    for (let i = 0; i < storeHours.length; i++) {
+      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
     }
-    getTotalCookies: function () { //This should total all the cookies sold.
-      for (let l = 0; l < storeHours.length; l++) {
-        sum
-      }
+  },
+  getCookiesSoldPerHour: function () {
+    for (let j = 0; j < storeHours.length; j++) {
+      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
     }
-  };
+  },
+  getTotalCookies: function () { //This should total all the cookies sold.
+    for (let l = 0; l < storeHours.length; l++) {
+      this.totalCookies += this.cookiesSoldPerHour[l];
+    }
+  }
+};
 
+// DOM 
 
+seattle.render = function () {
+  let h2Elem = document.createElement('h2');
+  h2Elem.textContent = this.location;
+  cookieList.appendChild(h2Elem);
 
-seattle.getCustPerHour();
-seattle.getCookiesSoldPerHour();
-console.log(seattle);
+  let ulElem = document.createElement('ul');
+  cookieList.appendChild(ulElem);
+  seattle.getCustPerHour();
+  seattle.getCookiesSoldPerHour();
+  seattle.getTotalCookies();
+  for (let i = 0; i < storeHours.length; i++) {
+    let liElem = document.createElement('li');
+    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
+    ulElem.appendChild(liElem);
+  }
+  let total = document.createElement('li');
+  total.textContent = `Total: ${this.totalCookies} cookies`;
+  ulElem.appendChild(total);
+};
 
-// let tokyo = {
-//   minCustHourly: 3,
-//   maxCustHourly: 24,
-//   aveCookiePer: 1.2,
-//   custPerHour: 0,
-//   getCustPerHour: function (minCustHourly, maxCustHourly) {
-//     this.custPerHour = randPerHour(minCustHourly, maxCustHourly);
-//   }
-// };
-
-// let dubai = {
-//   minCustHourly: 11,
-//   maxCustHourly: 38,
-//   aveCookiePer: 3.7,
-//   custPerHour: 0,
-//   getCustPerHour: function (minCustHourly, maxCustHourly) {
-//     this.custPerHour = randPerHour(minCustHourly, maxCustHourly);
-//   }
-// };
-
-// let paris = {
-//   minCustHourly: 20,
-//   maxCustHourly: 38,
-//   aveCookiePer: 2.3,
-//   custPerHour: 0,
-//   getCustPerHour: function (minCustHourly, maxCustHourly) {
-//     this.custPerHour = randPerHour(minCustHourly, maxCustHourly);
-//   }
-// };
-
-// let lima = {
-//   minCustHourly: 2,
-//   maxCustHourly: 16,
-//   aveCookiePer: 4.6,
-//   custPerHour: 0,
-//   getCustPerHour: function (minCustHourly, maxCustHourly) {
-//     this.custPerHour = randPerHour(minCustHourly, maxCustHourly);
-//   }
-// };
-
-// let shops = [seattle, tokyo, dubai, paris, lima];
+seattle.render();
