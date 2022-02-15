@@ -33,6 +33,8 @@ Display the lists on sales.html. We will be adding features to this application 
 */
 // let cookieList = document.getElementById("cookieList");
 
+let table = document.querySelector('table');
+
 let storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
 function randPerHour(min, max) {
@@ -87,12 +89,55 @@ Location.prototype.getTotalCookies = function () { //This should total all the c
   }
 };
 
+// PERFORM DOM MANIPULATION FOR SEATTLE OBJECT
+
+
+Location.prototype.renderTable = function() {
+
+  let row1 = document.createElement('tr');
+  table.appendChild(row1); // table. is calling to the DOM selector
+  let th1Elem = document.createElement('th');
+  th1Elem.textContent = `${this.location}`; //this is the content to go inside the TR elem
+  row1.appendChild(th1Elem); // this adds the content inside the <tr>
+  let td1Elem = document.createElement('td');
+  //td1Elem.textContent = `${this.}`;
+  row1.appendChild(td1Elem);
+  let td2Elem = document.createElement('td');
+  td2Elem.textContent = 'Good with dogs';
+  row1.appendChild(td2Elem);
+
+
+
+
+};
+
+// function to call to build each new location with all its data
+
+// how will this function run the methods for the objects to finish populating them?
+/*
+It will have a for loop, that checks for an exact value in the storeLocations and
+passes its indexed location into the object method calls. 
+
+*/
+function buildLoc(location, minCustHourly, maxCustHourly, aveCookiePer) {
+  new Location(location, minCustHourly, maxCustHourly, aveCookiePer);
+  
+  storeLocations[0].getCustPerHour();
+  storeLocations[0].getCookiesSoldPerHour();
+  storeLocations[0].getTotalCookies();
+}
+
 new Location('Seattle', 23, 65, 6.3);
 
 storeLocations[0].getCustPerHour();
 storeLocations[0].getCookiesSoldPerHour();
 storeLocations[0].getTotalCookies();
+storeLocations[0].renderTable();
 console.log(storeLocations[0]);
+
+
+
+
 
 // let seattle = {
 //   location: 'Seattle',
@@ -327,3 +372,5 @@ console.log(storeLocations[0]);
 // dubai.render();
 // paris.render();
 // lima.render();
+
+
