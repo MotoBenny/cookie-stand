@@ -91,4 +91,4 @@ buildLoc('Tokyo', 3, 24, 1.2);
 buildLoc('Dubai', 11, 38, 3.7);
 buildLoc('Paris', 20, 38, 2.3);
 buildLoc('Lima', 2, 16, 4.6);
-storeLocations[0].renderTable();
+storeLocations[2].renderTable();
