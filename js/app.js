@@ -72,11 +72,36 @@ Location.prototype.renderTable = function () {
       dataElem.textContent = cookieData;
       citiesRow.appendChild(dataElem);
     }
-    let salesTotal = storeLocations[i].totalCookies;
+    let salesTotal = storeLocations[i].totalCookies; // fills in the daily totals
     let salesData = document.createElement('td');
     salesData.textContent = salesTotal;
     citiesRow.appendChild(salesData);
   }
+  let totalRow = document.createElement('tr'); // creates the hourly totals row for all locations
+  let totalsLabel = 'Totals';
+  totalRow.textContent = totalsLabel;
+  table.append(totalRow);
+
+  // for (let i = 0; i < storeHours.length; i++) { // slow loop moves to the right of the table with each loop
+  //   // let total = 0;
+  //   //let workingHour = storeHours[i];
+  //   for (let j = 0; j < storeLocations[j].length; j++) { // fast loop, moves down through the stores, totally the cookie sales for each hour.
+  //     let total = storeLocations[j].cookiesSoldPerHour;
+  //     console.log(total);
+  //   }
+  //   ;
+  // }
+
+
+
+
+  // let store = storeLocations[i];
+  // let hours = storeHours[i]
+  // let total = storeHours[i].cookiesSoldPerHour[i];
+  // let allSalesPerHour =
+
+
+
 };
 
 function buildLoc(location, minCustHourly, maxCustHourly, aveCookiePer) {
