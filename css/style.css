@@ -1,3 +1,66 @@
+
+/* HEADER STYLING */
+
 body {
-  background-color: lightgrey;
+  width: 960px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+
+header {
+  background-color: salmon;
+  height: 80px;
+
+}
+
+nav {
+  width: 100%;
+
+}
+
+header ul { /* this controls the location of the home page and sales buttons */
+  display: flex;
+  font-size: 20pt;
+  justify-content: space-evenly;
+}
+
+ul a {
+  margin-top: 25px;
+}
+
+/* This section controls the styling for the home page image */
+
+#family {
+  display: flex;
+  justify-content: center;
+  border-radius: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+#family img {
+  border-radius: 20px;
+}
+
+/* contains the styling for the location and about me */
+
+/* This section styles the table created by the DOM manipulation in app.js */
+
+#salesData { /* styling here applies to the table DIV  */
+  display: flex;
+  justify-content: center;
+}
+
+table {
+  margin-top: 50px;
+}
+
+th {
+  font-size: 16pt;
+}
+
+td {
+  text-align: center;
+  margin-bottom: 
 }
