@@ -40,7 +40,7 @@ Location.prototype.getCookiesSoldPerHour = function () {
   }
 };
 
-Location.prototype.getTotalCookies = function () { 
+Location.prototype.getTotalCookies = function () {
   for (let l = 0; l < storeHours.length; l++) {
     this.totalCookies += this.cookiesSoldPerHour[l];
   }
@@ -48,27 +48,35 @@ Location.prototype.getTotalCookies = function () {
 
 // PERFORM DOM MANIPULATION FOR SEATTLE OBJECT
 
-
 Location.prototype.renderTable = function () {
-
-  for (let i = 0; 1 < storeHours.length; i++) {
+  let row1 = document.createElement('tr');
+  
+  
+  table.appendChild(row1);
+  for (let i = 0; i < storeHours.length; i++) {
     let content = storeHours[i];
-    let row1 = document.createElement('tr');
-    table.appendChild(row1);
-    let th1Elem = document.createElement('th');
-    th1Elem.textContent = `${content}`;
-    row1.appendChild(content);
-
+    let hourRow = document.createElement('th');
+    hourRow.textContent = content;
+    row1.appendChild(hourRow);
+    console.log(hourRow);
   }
+  let dailyLocTotal = document.createElement('th');
+  dailyLocTotal.textContent = "Total Daily";
+  row1.append("Total Daily");
 
-//  //this is the content to go inside the TR elem
-//   row1.appendChild(th1Elem); // this adds the content inside the <tr>
-//   let td1Elem = document.createElement('td');
-//   //td1Elem.textContent = `${this.}`;
-//   row1.appendChild(td1Elem);
-//   let td2Elem = document.createElement('td');
-//   td2Elem.textContent = 'Good with dogs';
-//   row1.appendChild(td2Elem);
+  for (let i = 0; i < storeLocations.length; i++) {
+    let rows = document.createElement('tr');
+    table.append(rows);
+  }
+  
+  //  //this is the content to go inside the TR elem
+  //   row1.appendChild(hourRow); // this adds the content inside the <tr>
+  //   let td1Elem = document.createElement('td');
+  //   //td1Elem.textContent = `${this.}`;
+  //   row1.appendChild(td1Elem);
+  //   let td2Elem = document.createElement('td');
+  //   td2Elem.textContent = 'Good with dogs';
+  //   row1.appendChild(td2Elem);
 };
 
 // function to call to build each new location with all its data
@@ -86,12 +94,12 @@ function buildLoc(location, minCustHourly, maxCustHourly, aveCookiePer) {
 
 buildLoc('Seattle', 23, 65, 6.3);
 buildLoc('Tokyo', 10, 83, 2);
+buildLoc
 
-storeLocations[0].prototype.renderTable();
+storeLocations[0].renderTable();
 
 // console.log(`this is the location variable ${location}`);
 // console.log(`this is the storeLocations Array after constuctor is run ${storeLocations}`);
-console.log(storeLocations);
 // console.log(storeLocations.find({ location: location }));
 // let something = Array.prototype.indexOf();
 
