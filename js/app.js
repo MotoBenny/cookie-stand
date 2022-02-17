@@ -57,7 +57,10 @@ Location.prototype.renderTable = function () {
     hourRow.textContent = content;
     row1.appendChild(hourRow);
   }
-  row1.append('Daily Location Total'); // appends daily location total header to end of top row
+
+  let dailyTotCell = document.createElement('th');
+  dailyTotCell.textContent = 'Daily Location Total';
+  row1.append(dailyTotCell); // appends daily location total header to end of top row
 
   for (let i = 0; i < storeLocations.length; i++) { // creates column of location names (rows)
     let citiesRow = document.createElement('tr');
@@ -76,32 +79,29 @@ Location.prototype.renderTable = function () {
     let salesData = document.createElement('td');
     salesData.textContent = salesTotal;
     citiesRow.appendChild(salesData);
+
   }
-  let totalRow = document.createElement('tr'); // creates the hourly totals row for all locations
+  let totalHead = document.createElement('th'); // creates the hourly totals row for all locations
   let totalsLabel = 'Totals';
-  totalRow.textContent = totalsLabel;
-  table.append(totalRow);
+  let bottomRow = document.createElement('tr');
+  table.append(bottomRow);
+  totalHead.textContent = totalsLabel;
+  bottomRow.append(totalHead);
 
-  // for (let i = 0; i < storeHours.length; i++) { // slow loop moves to the right of the table with each loop
-  //   // let total = 0;
-  //   //let workingHour = storeHours[i];
-  //   for (let j = 0; j < storeLocations[j].length; j++) { // fast loop, moves down through the stores, totally the cookie sales for each hour.
-  //     let total = storeLocations[j].cookiesSoldPerHour;
-  //     console.log(total);
-  //   }
-  //   ;
-  // }
-
-
-
-
-  // let store = storeLocations[i];
-  // let hours = storeHours[i]
-  // let total = storeHours[i].cookiesSoldPerHour[i];
-  // let allSalesPerHour =
-
-
-
+  let grandTotal = 0;
+  for (let i = 0; i < storeHours.length; i++) { // slow loop moves to the right of the table with each loop
+    let total = 0;
+    for (let j = 0; j < storeLocations.length; j++) { // fast loop, moves down through the stores, totally the cookie sales for each hour.
+      total += storeLocations[j].cookiesSoldPerHour[i];
+    }
+    grandTotal += total;
+    let cellData = document.createElement('td');
+    cellData.textContent = total;
+    bottomRow.append(cellData);
+  }
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = grandTotal;
+  bottomRow.append(grandTotalCell);
 };
 
 function buildLoc(location, minCustHourly, maxCustHourly, aveCookiePer) {
