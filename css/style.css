@@ -2,21 +2,23 @@
 /* HEADER STYLING */
 
 body {
+  font-family: 'Cabin', sans-serif;
   width: 960px;
   margin-left: 10%;
   margin-right: 10%;
+  background-color: #B08EA2;
 }
 
 
 header {
-  background-color: salmon;
+  background-color: #A63A50;
   height: 80px;
-
+  box-shadow: .1px 3px 3px #000;
+  
 }
 
 nav {
   width: 100%;
-
 }
 
 header ul { /* this controls the location of the home page and sales buttons */
@@ -25,8 +27,26 @@ header ul { /* this controls the location of the home page and sales buttons */
   justify-content: space-evenly;
 }
 
+ul {
+  margin-top: 0px;
+}
+
 ul a {
   margin-top: 25px;
+
+  background-color: #006E90;
+  color: #fff;
+  width: max-content;
+  padding: 10px 30px;
+  transition: 100ms;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 12px;
+
+}
+
+ul a:hover {
+  background-color: #92B4A7;
 }
 
 /* This section controls the styling for the home page image */
@@ -37,10 +57,13 @@ ul a {
   border-radius: 30px;
   padding-top: 20px;
   padding-bottom: 20px;
+  margin-bottom: 40px;
+  margin-top: 40px;
 }
 
 #family img {
   border-radius: 20px;
+  box-shadow: 4px 6px 3px rgb(53, 53, 53);
 }
 
 /* contains the styling for the location and about me */
@@ -50,17 +73,114 @@ ul a {
 #salesData { /* styling here applies to the table DIV  */
   display: flex;
   justify-content: center;
+  background-color: #fff;
+  border-radius: 25px;
+  width: auto;
+  margin: auto;
+  margin-top: 90px;
+
 }
 
 table {
-  margin-top: 50px;
+  line-height: 25px;
 }
 
 th {
-  font-size: 16pt;
+  font-size: 14pt;
+  padding: 5px;
+  font-weight: 500;
 }
 
 td {
   text-align: center;
-  margin-bottom: 
+  margin-bottom: 20px
+}
+
+/* This styles the about us section */
+
+main {
+  display: flex;
+}
+
+main h1 {
+  float:inherit;
+  background-color: #A63A50;
+  width: 180px;
+  padding: 10px;
+  margin: 20px;
+}
+
+#aboutUs {
+  display: flex;
+  background-color: #A63A50;
+  width: 800px;
+  margin-left: 60px;
+  margin-right: 30px;
+  padding: 30px;
+  text-indent: 20px;
+
+}
+
+/* This section styles talking salmon section */
+
+#talkingSalmon {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#salesChinook {
+  position: relative;
+  top: 40px;
+  left: 20px;
+}
+
+/* talk bubbles from https://codepen.io/quadbaup/pen/rKOKQv */
+
+#talkBubble {
+  font-family: 'Cabin', sans-serif;
+  width: 200px;
+  text-indent: 20px;
+}
+#talkBubble {
+  display:flex;
+  background-color:#fff;
+  padding:20px;
+  border-radius:30px;
+  min-width:40px;
+  max-width:220px;
+  min-height:40px;
+  margin:20px;
+  position:relative;
+  align-items:center;
+  text-align:center;
+}
+
+#talkBubble:before,
+#talkBubble:after {
+  content:"";
+  background-color:#fff;
+  border-radius:50%;
+  display:block;
+  position:absolute;
+  z-index:-1;
+}
+
+#talkBubble:before {
+  width:44px;
+  height:44px;
+  top:-12px;
+  left:28px;
+  box-shadow:-50px 30px 0 -12px #fff;
+}
+
+#talkBubble:after {
+  bottom:-10px;
+  right:26px;
+  width:30px;
+  height:30px;
+  box-shadow:40px -34px 0 0 #fff,
+  -28px -6px 0 -2px #fff,
+  -24px 17px 0 -6px #fff,
+  -5px 25px 0 -10px #fff;
 }
