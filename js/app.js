@@ -117,3 +117,28 @@ buildLoc('Dubai', 11, 38, 3.7);
 buildLoc('Paris', 20, 38, 2.3);
 buildLoc('Lima', 2, 16, 4.6);
 storeLocations[2].renderTable();
+
+// code for my new locations form is below this line
+// step one --- grab element to listen too, in this case it is the Form stores as locForm
+let locForm = document.getElementById('loc-Form');
+
+function appendNewLoc(event) {
+  event.preventDefault();
+  console.log('This knows you hit the submit button!');
+  console.log(locForm);
+
+  let formLocInput = event.target.location.value; // tested and working Returning numbers
+  let formMinInput = parseInt(event.target.minHourlyCust.value);
+  let formMaxInput = parseInt(event.target.maxHourlyCust.value);
+  let formAveCookie = parseInt(event.target.aveCookiePer.value);
+
+  console.log(formLocInput);
+  console.log(formMinInput);
+  console.log(formMaxInput);
+  console.log(formAveCookie);
+}
+
+
+
+// step two -- Add a listener to the element, currently with a placeholder function
+locForm.addEventListener('submit', appendNewLoc);
