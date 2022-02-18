@@ -227,3 +227,32 @@ main h1 {
   justify-content: center;
 }
 
+/* styling for the form */
+
+fieldset label {
+  text-align: left;
+  
+}
+
+input {
+  padding: 3px;
+  border-radius: 7px;
+}
+
+#newLoc {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  height: 240px;
+  margin-top: 40px;
+  background-color: #A63A50;
+  padding: 25px;
+  font-size: 18px;
+  width: 300px;
+}
+
+legend {
+  font-size: 22pt;
+
+}
