@@ -244,15 +244,15 @@ input {
   align-items: center;
   justify-content: center;
   border-radius: 15px;
-  height: 240px;
+  height: 320px;
   margin-top: 40px;
   background-color: #A63A50;
   padding: 25px;
-  font-size: 18px;
+  font-size: 20px;
+  line-height: 1.6;
   width: 300px;
 }
 
 legend {
   font-size: 22pt;
-
 }
