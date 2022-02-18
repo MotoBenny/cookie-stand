@@ -22,7 +22,6 @@ body {
   background-color: #B08EA2;
 
   background-repeat: repeat-y;
-  background-repeat:;
 }
 
 header {
@@ -143,6 +142,7 @@ main h1 {
   position: relative;
   top: 40px;
   left: 20px;
+  height: 40px;
 }
 
 /* talk bubbles from https://codepen.io/quadbaup/pen/rKOKQv */
