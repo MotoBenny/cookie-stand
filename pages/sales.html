@@ -44,22 +44,26 @@
     <form id="loc-Form">
       <fieldset>
         <legend>Add a new Location</legend>
-
-        <label>City
-          <input type="text" name="location">
-        </label>
-        
-        <label>Minimum hourly customers
-          <input type="number" name="minHourlyCust">
-        </label>
-        
-        <label>Max hourly customers
-          <input type="text" name="maxHourlyCust">
-        </label>
-        
-        <label>Average cookies per customer
-          <input type="number" name="aveCookiePer">
-        </label>
+        <div>
+          <label>City
+            <input type="text" name="location" required="required">
+          </label>
+        </div>
+        <div>
+          <label>Minimum hourly customers
+            <input type="number" name="minHourlyCust" required="required">
+          </label>
+        </div>
+        <div>
+          <label>Max hourly customers
+            <input type="text" name="maxHourlyCust" required="required">
+          </label>
+        </div>
+        <div>
+          <label>Average cookies per customer
+            <input type="number" name="aveCookiePer" required="required">
+          </label>
+        </div>
       </fieldset>
       <button type="submit" class="navButtons">Submit new location</button>
     </form>
