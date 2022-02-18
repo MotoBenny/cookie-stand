@@ -157,6 +157,38 @@ function appendNewLoc(event) {
     citiesRow.appendChild(dataElem);
   }
 
+  let salesTotal = storeLocations[newStore].totalCookies; // fills in the daily totals
+  let salesData = document.createElement('td');
+  salesData.textContent = salesTotal;
+  citiesRow.appendChild(salesData);
+
+
+
+
+  let totalHead = document.createElement('th'); // creates the hourly totals row for all locations
+  let totalsLabel = 'Totals';
+  let bottomRow = document.createElement('tr');
+  table.append(bottomRow);
+  totalHead.textContent = totalsLabel;
+  // bottomRow.setAttribute("id","totalsRow");
+  bottomRow.append(totalHead);
+
+  let grandTotal = 0;
+  for (let i = 0; i < storeHours.length; i++) { // slow loop moves to the right of the table with each loop
+    let total = 0;
+    for (let j = 0; j < storeLocations.length; j++) { // fast loop, moves down through the stores, totally the cookie sales for each hour.
+      total += storeLocations[j].cookiesSoldPerHour[i];
+    }
+    grandTotal += total;
+    let cellData = document.createElement('td');
+    cellData.textContent = total;
+
+    bottomRow.append(cellData);
+  }
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = grandTotal;
+  bottomRow.append(grandTotalCell);
+
 }
 
 
