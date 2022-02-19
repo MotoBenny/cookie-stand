@@ -231,7 +231,7 @@ main h1 {
 
 fieldset label {
   text-align: left;
-  
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 input {
