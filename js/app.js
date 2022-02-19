@@ -1,37 +1,6 @@
 'use strict';
 
-/*
-
-Within your javascript file (example: app.js), create separate JS object literals for each shop location that outputs the following to the sales.html file:
-
-Stores the min/max hourly customers, and the average cookies per customer, in object properties
-Uses a method of that object to generate a random number of customers per hour. Objects/Math/random
-Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
-Store the results for each location in a separate array… perhaps as a property of the object representing that location
-Display the values of each array as unordered lists in the browser
-Calculating the sum of these hourly totals; your output for each location should look like this:
-
-Seattle
-
-6am: 16 cookies
-7am: 20 cookies
-8am: 35 cookies
-9am: 48 cookies
-10am: 56 cookies
-11am: 77 cookies
-12pm: 93 cookies
-1pm: 144 cookies
-2pm: 119 cookies
-3pm: 84 cookies
-4pm: 61 cookies
-5pm: 23 cookies
-6pm: 42 cookies
-7pm: 57 cookies
-Total: 875 cookies
-Display the lists on sales.html. We will be adding features to this application and working with its layout in the upcoming labs.
-
-*/
-let cookieList = document.getElementById("cookieList");
+let table = document.querySelector('table');
 
 let storeHours = ['6am', '7am', '8am', '9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm', '6pm', '7pm'];
 
@@ -44,248 +13,174 @@ function cookiesPerHour(custPerHour, aveCookiePer) {
   return cookiesPerHour;
 }
 
-// object stores the min/max hourly customers, and the average cookies per customer as properties.
+let storeLocations = [];
 
-/*
-Calculate and store the simulated amounts of cookies purchased for each hour at each location using average cookies purchased and the random number of customers generated
+function Location(location, minCustHourly, maxCustHourly, aveCookiePer) {
+  this.location = location;
+  this.minCustHourly = minCustHourly;
+  this.maxCustHourly = maxCustHourly;
+  this.aveCookiePer = aveCookiePer;
+  this.custPerHour = [];
+  this.cookiesSoldPerHour = [];
+  this.totalCookies = 0;
 
-i.e create let cookies purchased function that gives the product of custperhour * aveCookiePer DONE
+  storeLocations.push(this);
+}
 
-create a function that makes a create a function that calculates the cookies per hour off of the properties inside each object. And iterates through, for each time slot, than totals the number of cookies. This can use a counter for the hours, and after the counter hits a certain number it should total them. Then add that to the array
-
-*/
-
-let seattle = {
-  location: 'Seattle',
-  minCustHourly: 23,
-  maxCustHourly: 65,
-  aveCookiePer: 6.3,
-  custPerHour: [],
-  cookiesSoldPerHour: [],
-  totalCookies: 0,
-  getCustPerHour: function () {
-    for (let i = 0; i < storeHours.length; i++) {
-      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-    }
-  },
-  getCookiesSoldPerHour: function () {
-    for (let j = 0; j < storeHours.length; j++) {
-      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-    }
-  },
-  getTotalCookies: function () { //This should total all the cookies sold.
-    for (let l = 0; l < storeHours.length; l++) {
-      this.totalCookies += this.cookiesSoldPerHour[l];
-    }
-  }
-};
-
-let tokyo = {
-  location: 'Tokyo',
-  minCustHourly: 3,
-  maxCustHourly: 24,
-  aveCookiePer: 1.2,
-  custPerHour: [],
-  cookiesSoldPerHour: [],
-  totalCookies: 0,
-  getCustPerHour: function () {
-    for (let i = 0; i < storeHours.length; i++) {
-      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-    }
-  },
-  getCookiesSoldPerHour: function () {
-    for (let j = 0; j < storeHours.length; j++) {
-      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-    }
-  },
-  getTotalCookies: function () { //This should total all the cookies sold.
-    for (let l = 0; l < storeHours.length; l++) {
-      this.totalCookies += this.cookiesSoldPerHour[l];
-    }
-  }
-};
-
-let dubai = {
-  location: 'Dubai',
-  minCustHourly: 11,
-  maxCustHourly: 38,
-  aveCookiePer: 3.7,
-  custPerHour: [],
-  cookiesSoldPerHour: [],
-  totalCookies: 0,
-  getCustPerHour: function () {
-    for (let i = 0; i < storeHours.length; i++) {
-      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-    }
-  },
-  getCookiesSoldPerHour: function () {
-    for (let j = 0; j < storeHours.length; j++) {
-      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-    }
-  },
-  getTotalCookies: function () { //This should total all the cookies sold.
-    for (let l = 0; l < storeHours.length; l++) {
-      this.totalCookies += this.cookiesSoldPerHour[l];
-    }
-  }
-};
-
-let paris = {
-  location: 'Paris',
-  minCustHourly: 20,
-  maxCustHourly: 38,
-  aveCookiePer: 2.3,
-  custPerHour: [],
-  cookiesSoldPerHour: [],
-  totalCookies: 0,
-  getCustPerHour: function () {
-    for (let i = 0; i < storeHours.length; i++) {
-      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-    }
-  },
-  getCookiesSoldPerHour: function () {
-    for (let j = 0; j < storeHours.length; j++) {
-      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-    }
-  },
-  getTotalCookies: function () { //This should total all the cookies sold.
-    for (let l = 0; l < storeHours.length; l++) {
-      this.totalCookies += this.cookiesSoldPerHour[l];
-    }
-  }
-};
-
-let lima = {
-  location: 'Lima',
-  minCustHourly: 2,
-  maxCustHourly: 16,
-  aveCookiePer: 4.6,
-  custPerHour: [],
-  cookiesSoldPerHour: [],
-  totalCookies: 0,
-  getCustPerHour: function () {
-    for (let i = 0; i < storeHours.length; i++) {
-      this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
-    }
-  },
-  getCookiesSoldPerHour: function () {
-    for (let j = 0; j < storeHours.length; j++) {
-      this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
-    }
-  },
-  getTotalCookies: function () { //This should total all the cookies sold.
-    for (let l = 0; l < storeHours.length; l++) {
-      this.totalCookies += this.cookiesSoldPerHour[l];
-    }
-  }
-};
-
-// DOM 
-// TO DO, Make render into a re-usable function so you can simply call it with the object name, to render the list in HTML
-
-seattle.render = function () {
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = seattle.location;
-  cookieList.appendChild(h2Elem);
-
-  let ulElem = document.createElement('ul');
-  cookieList.appendChild(ulElem);
-  seattle.getCustPerHour();
-  seattle.getCookiesSoldPerHour();
-  seattle.getTotalCookies();
+Location.prototype.getCustPerHour = function () {
   for (let i = 0; i < storeHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
-    ulElem.appendChild(liElem);
+    this.custPerHour.push(randPerHour(this.minCustHourly, this.maxCustHourly));
   }
-  let total = document.createElement('li');
-  total.textContent = `Total: ${this.totalCookies} cookies`;
-  ulElem.appendChild(total);
 };
 
-tokyo.render = function () {
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = tokyo.location;
-  cookieList.appendChild(h2Elem);
+Location.prototype.getCookiesSoldPerHour = function () {
+  for (let j = 0; j < storeHours.length; j++) {
+    this.cookiesSoldPerHour.push(Math.floor(cookiesPerHour(this.custPerHour[j], this.aveCookiePer)));
+  }
+};
 
-  let ulElem = document.createElement('ul');
-  cookieList.appendChild(ulElem);
-  tokyo.getCustPerHour();
-  tokyo.getCookiesSoldPerHour();
-  tokyo.getTotalCookies();
+Location.prototype.getTotalCookies = function () {
+  for (let l = 0; l < storeHours.length; l++) {
+    this.totalCookies += this.cookiesSoldPerHour[l];
+  }
+};
+
+Location.prototype.renderTable = function () {
+  let row1 = document.createElement('tr'); // Create initial row and append to parent table elem
+  table.appendChild(row1);
+
+  let emptyCell = document.createElement('th');
+  row1.append(emptyCell);
+  for (let i = 0; i < storeHours.length; i++) { // grabs store hours from array, and adds to top row
+    let content = storeHours[i];
+    let hourRow = document.createElement('th');
+    hourRow.textContent = content;
+    row1.appendChild(hourRow);
+  }
+
+  let dailyTotCell = document.createElement('th');
+  dailyTotCell.textContent = 'Daily Location Total';
+  row1.append(dailyTotCell); // appends daily location total header to end of top row
+
+  for (let i = 0; i < storeLocations.length; i++) { // creates column of location names (rows)
+    let citiesRow = document.createElement('tr');
+    table.appendChild(citiesRow);
+    let locHead = document.createElement('th');
+    let locName = storeLocations[i].location;
+    locHead.textContent = locName;
+    citiesRow.append(locHead);
+    for (let j = 0; j < storeHours.length; j++) { // fills table with cookie sales data
+      let cookieData = storeLocations[i].cookiesSoldPerHour[j];
+      let dataElem = document.createElement('td');
+      dataElem.textContent = cookieData;
+      citiesRow.appendChild(dataElem);
+    }
+    let salesTotal = storeLocations[i].totalCookies; // fills in the daily totals
+    let salesData = document.createElement('td');
+    salesData.textContent = salesTotal;
+    citiesRow.appendChild(salesData);
+
+  }
+  let totalHead = document.createElement('th'); // creates the hourly totals row for all locations
+  let totalsLabel = 'Totals';
+  let bottomRow = document.createElement('tr');
+  table.append(bottomRow);
+  totalHead.textContent = totalsLabel;
+  // bottomRow.setAttribute("id","totalsRow");
+  bottomRow.append(totalHead);
+
+  let grandTotal = 0;
+  for (let i = 0; i < storeHours.length; i++) { // slow loop moves to the right of the table with each loop
+    let total = 0;
+    for (let j = 0; j < storeLocations.length; j++) { // fast loop, moves down through the stores, totally the cookie sales for each hour.
+      total += storeLocations[j].cookiesSoldPerHour[i];
+    }
+    grandTotal += total;
+    let cellData = document.createElement('td');
+    cellData.textContent = total;
+
+    bottomRow.append(cellData);
+  }
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = grandTotal;
+  bottomRow.append(grandTotalCell);
+};
+
+function buildLoc(location, minCustHourly, maxCustHourly, aveCookiePer) {
+  const loc = new Location(location, minCustHourly, maxCustHourly, aveCookiePer); //builds the location object adds to storeLocations array
+  loc.getCustPerHour();
+  loc.getCookiesSoldPerHour();
+  loc.getTotalCookies();
+}
+
+buildLoc('Seattle', 23, 65, 6.3);
+buildLoc('Tokyo', 3, 24, 1.2);
+buildLoc('Dubai', 11, 38, 3.7);
+buildLoc('Paris', 20, 38, 2.3);
+buildLoc('Lima', 2, 16, 4.6);
+storeLocations[0].renderTable();
+
+let locForm = document.getElementById('loc-Form');
+
+function appendNewLoc(event) {
+  event.preventDefault();
+
+  let formLocInput = event.target.location.value;
+  let formMinInput = parseInt(event.target.minHourlyCust.value);
+  let formMaxInput = parseInt(event.target.maxHourlyCust.value);
+  let formAveCookie = parseInt(event.target.aveCookiePer.value);
+
+  buildLoc(formLocInput, formMinInput, formMaxInput, formAveCookie);
+
+  let totalsRow = document.getElementById('cookieSales');
+  totalsRow.deleteRow(-1);
+
+  let newStore = storeLocations.length - 1;
+  let citiesRow = document.createElement('tr');
+  table.appendChild(citiesRow);
+
+  let locHead = document.createElement('th');
+  locHead.textContent = formLocInput;
+  citiesRow.append(locHead);
+
   for (let i = 0; i < storeHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
-    ulElem.appendChild(liElem);
+    let cookieData = storeLocations[newStore].cookiesSoldPerHour[i];
+    let dataElem = document.createElement('td');
+    dataElem.textContent = cookieData;
+    citiesRow.appendChild(dataElem);
   }
-  let total = document.createElement('li');
-  total.textContent = `Total: ${this.totalCookies} cookies`;
-  ulElem.appendChild(total);
-};
 
-dubai.render = function () {
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = dubai.location;
-  cookieList.appendChild(h2Elem);
+  let salesTotal = storeLocations[newStore].totalCookies;
+  let salesData = document.createElement('td');
+  salesData.textContent = salesTotal;
+  citiesRow.appendChild(salesData);
 
-  let ulElem = document.createElement('ul');
-  cookieList.appendChild(ulElem);
-  dubai.getCustPerHour();
-  dubai.getCookiesSoldPerHour();
-  dubai.getTotalCookies();
+  let totalHead = document.createElement('th');
+  let totalsLabel = 'Totals';
+  let bottomRow = document.createElement('tr');
+  table.append(bottomRow);
+  totalHead.textContent = totalsLabel;
+  bottomRow.append(totalHead);
+
+  let grandTotal = 0;
   for (let i = 0; i < storeHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
-    ulElem.appendChild(liElem);
+    let total = 0;
+    for (let j = 0; j < storeLocations.length; j++) {
+      total += storeLocations[j].cookiesSoldPerHour[i];
+    }
+    grandTotal += total;
+    let cellData = document.createElement('td');
+    cellData.textContent = total;
+
+    bottomRow.append(cellData);
   }
-  let total = document.createElement('li');
-  total.textContent = `Total: ${this.totalCookies} cookies`;
-  ulElem.appendChild(total);
-};
+  let grandTotalCell = document.createElement('td');
+  grandTotalCell.textContent = grandTotal;
+  bottomRow.append(grandTotalCell);
 
-paris.render = function () {
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = paris.location;
-  cookieList.appendChild(h2Elem);
-
-  let ulElem = document.createElement('ul');
-  cookieList.appendChild(ulElem);
-  paris.getCustPerHour();
-  paris.getCookiesSoldPerHour();
-  paris.getTotalCookies();
-  for (let i = 0; i < storeHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
-    ulElem.appendChild(liElem);
-  }
-  let total = document.createElement('li');
-  total.textContent = `Total: ${this.totalCookies} cookies`;
-  ulElem.appendChild(total);
-};
-
-lima.render = function () {
-  let h2Elem = document.createElement('h2');
-  h2Elem.textContent = lima.location;
-  cookieList.appendChild(h2Elem);
-
-  let ulElem = document.createElement('ul');
-  cookieList.appendChild(ulElem);
-  lima.getCustPerHour();
-  lima.getCookiesSoldPerHour();
-  lima.getTotalCookies();
-  for (let i = 0; i < storeHours.length; i++) {
-    let liElem = document.createElement('li');
-    liElem.textContent = `${storeHours[i]}: ${this.cookiesSoldPerHour[i]} cookies`;
-    ulElem.appendChild(liElem);
-  }
-  let total = document.createElement('li');
-  total.textContent = `Total: ${this.totalCookies} cookies`;
-  ulElem.appendChild(total);
-};
+}
 
 
-seattle.render();
-tokyo.render();
-dubai.render();
-paris.render();
-lima.render();
+
+// step two -- Add a listener to the element, currently with a placeholder function
+locForm.addEventListener('submit', appendNewLoc);
